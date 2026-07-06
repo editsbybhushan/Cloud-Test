@@ -1,111 +1,199 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CloudClear LISS-IV</title>
-
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: Arial, sans-serif;
-        }
-
-        body {
-            background: #0b1220;
-            color: white;
-        }
-
-        /* Navbar */
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 50px;
-<!DOCTYPE html>
-<html lang="en">
-<head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dashboard</title>
+<title>CloudClear LISS-IV</title>
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:Segoe UI;}
 
-body{
-  display:flex;
-  background:#f1f5f9;
+/* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", sans-serif;
 }
 
-/* SIDEBAR */
-.sidebar{
-  width:250px;
-  height:100vh;
-  background:#0f172a;
-  color:white;
-  padding:20px;
-  position:fixed;
+/* BODY */
+body {
+  background: radial-gradient(circle at top, #0f172a, #020617);
+  color: white;
 }
 
-.logo{
-  font-size:18px;
-  font-weight:bold;
-  margin-bottom:25px;
+/* NAVBAR */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 60px;
 }
 
-.menu a{
-  display:flex;
-  padding:12px;
-  color:#94a3b8;
-  text-decoration:none;
-  border-radius:8px;
-  margin-bottom:8px;
+.logo {
+  font-size: 20px;
+  font-weight: bold;
 }
 
-.menu a.active{
-  background:#6366f1;
-  color:white;
+nav a {
+  margin: 0 15px;
+  text-decoration: none;
+  color: #cbd5f5;
+  font-size: 14px;
 }
 
-/* MAIN */
-.main{
-  margin-left:250px;
-  width:100%;
-  padding:25px;
+nav a:hover {
+  color: white;
 }
 
-/* HEADER */
-.header{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
+.btn {
+  background: linear-gradient(45deg, #6366f1, #8b5cf6);
+  padding: 10px 18px;
+  border-radius: 8px;
+  color: white;
+  text-decoration: none;
+  font-size: 14px;
 }
 
-.header h2{
-  font-size:22px;
+/* HERO SECTION */
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 80px 60px;
 }
 
-.subtext{
-  color:#64748b;
-  margin-top:5px;
+/* LEFT TEXT */
+.hero-text {
+  max-width: 500px;
 }
 
-.user{
-  display:flex;
-  align-items:center;
-  gap:10px;
+.hero-text h1 {
+  font-size: 42px;
+  line-height: 1.3;
 }
 
-.user img{
-  width:35px;
-  border-radius:50%;
+.hero-text p {
+  margin-top: 15px;
+  color: #94a3b8;
+  font-size: 14px;
 }
 
-/* CARDS */
-.cards{
-  display:grid;
+.hero-buttons {
+  margin-top: 25px;
+}
+
+.hero-buttons a {
+  margin-right: 10px;
+}
+
+/* RIGHT IMAGE */
+.hero-img img {
+  width: 450px;
+  border-radius: 15px;
+}
+
+/* FEATURES */
+.features {
+  margin-top: 50px;
+  padding: 40px 60px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.feature-box {
+  background: #0f172a;
+  padding: 20px;
+  border-radius: 12px;
+  width: 23%;
+  text-align: center;
+  border: 1px solid #1e293b;
+}
+
+.feature-box img {
+  width: 40px;
+  margin-bottom: 10px;
+}
+
+.feature-box h4 {
+  margin-bottom: 8px;
+}
+
+.feature-box p {
+  font-size: 12px;
+  color: #94a3b8;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="logo">☁️ CloudClear LISS-IV</div>
+  <nav>
+    <a href="#">Home</a>
+    <a href="#">Features</a>
+    <a href="#">How it Works</a>
+    <a href="#">Pricing</a>
+    <a href="#">Contact</a>
+    <a href="login.html" class="btn">Sign In</a>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+
+  <div class="hero-text">
+    <h1>AI-Powered Cloud Removal<br>for LISS-IV Satellite Imagery</h1>
+    <p>
+      Remove clouds, reconstruct missing areas, and reveal new Earth insights 
+      using advanced Generative AI.
+    </p>
+
+    <div class="hero-buttons">
+      <a href="signup.html" class="btn">Get Started</a>
+      <a href="#" class="btn" style="background:#1e293b;">Learn More</a>
+    </div>
+  </div>
+
+  <div class="hero-img">
+    <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa" alt="satellite">
+  </div>
+
+</section>
+
+<!-- FEATURES -->
+<section class="features">
+
+  <div class="feature-box">
+    <img src="https://img.icons8.com/fluency/48/artificial-intelligence.png"/>
+    <h4>AI-Powered</h4>
+    <p>Uses generative AI models for accurate cloud removal</p>
+  </div>
+
+  <div class="feature-box">
+    <img src="https://img.icons8.com/fluency/48/accuracy.png"/>
+    <h4>High Accuracy</h4>
+    <p>Reconstructs missing regions with precision</p>
+  </div>
+
+  <div class="feature-box">
+    <img src="https://img.icons8.com/fluency/48/security-checked.png"/>
+    <h4>Secure & Private</h4>
+    <p>Your data is safe and encrypted</p>
+  </div>
+
+  <div class="feature-box">
+    <img src="https://img.icons8.com/fluency/48/clock.png"/>
+    <h4>Fast Processing</h4>
+    <p>Get results in seconds</p>
+  </div>
+
+</section>
+
+</body>
+</html>   display:grid;
   grid-template-columns:repeat(4,1fr);
   gap:15px;
   margin-top:20px;
