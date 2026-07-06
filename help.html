@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Help & Support - CloudClear</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    display: flex;
+    background: #f1f5f9;
+}
+
+/* SIDEBAR */
+.sidebar {
+    width: 230px;
+    height: 100vh;
+    background: #0b1220;
+    color: white;
+    padding: 20px;
+    position: fixed;
+}
+
+.sidebar h2 {
+    margin-bottom: 30px;
+}
+
+.sidebar a {
+    display: block;
+    color: #cbd5e1;
+    text-decoration: none;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.sidebar a:hover {
+    background: #1e293b;
+    color: white;
+}
+
+/* MAIN */
+.main {
+    margin-left: 230px;
+    width: calc(100% - 230px);
+}
+
+/* TOPBAR */
+.topbar {
+    background: white;
+    padding: 15px 25px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+/* CONTENT */
+.content {
+    padding: 30px;
+}
+
+/* FAQ BOX */
+.faq-box {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.05);
+}
+
+.faq-box h4 {
+    margin-bottom: 8px;
+}
+
+/* CONTACT */
+.contact-box {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 25px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.05);
+}
+
+.contact-box input, .contact-box textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+}
+
+.contact-box button {
+    padding: 10px 18px;
+    border: none;
+    background: #5b6cff;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.contact-box button:hover {
+    background: #4a58e0;
+}
+</style>
+</head>
+
+<body>
+
+<!-- SIDEBAR -->
+<div class="sidebar">
+    <h2>CloudClear</h2>
+    <a href="dashboard.html">Dashboard</a>
+    <a href="upload.html">Upload Image</a>
+    <a href="processing.html">Processing</a>
+    <a href="result.html">Results</a>
+    <a href="compare.html">Compare</a>
+    <a href="history.html">History</a>
+    <a href="tools.html">Tools</a>
+    <a href="settings.html">Settings</a>
+    <a href="#">Help</a>
+    <a href="index.html">Logout</a>
+</div>
+
+<!-- MAIN -->
+<div class="main">
+
+    <!-- TOPBAR -->
+    <div class="topbar">
+        <h3>Help & Support</h3>
+    </div>
+
+    <!-- CONTENT -->
+    <div class="content">
+
+        <!-- FAQ -->
+        <div class="faq-box">
+            <h4>How to upload an image?</h4>
+            <p>Go to Upload Image page and select your satellite image.</p>
+        </div>
+
+        <div class="faq-box">
+            <h4>How does cloud removal work?</h4>
+            <p>Our AI model processes your image and reconstructs cloud-covered regions.</p>
+        </div>
+
+        <div class="faq-box">
+            <h4>What formats are supported?</h4>
+            <p>Currently supports JPG, PNG, and TIFF satellite images.</p>
+        </div>
+
+        <!-- CONTACT -->
+        <div class="contact-box">
+            <h3>Contact Support</h3>
+            <input type="text" placeholder="Your Name">
+            <input type="email" placeholder="Your Email">
+            <textarea rows="4" placeholder="Your Message"></textarea>
+            <button>Send Message</button>
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

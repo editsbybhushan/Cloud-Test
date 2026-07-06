@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Signup</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial;
+    display: flex;
+    height: 100vh;
+}
+
+/* LEFT PANEL */
+.left {
+    width: 35%;
+    background: linear-gradient(#0b1220, #1e293b);
+    color: white;
+    padding: 40px;
+}
+
+.left h2 {
+    margin-bottom: 20px;
+}
+
+.left p {
+    font-size: 14px;
+    margin: 10px 0;
+}
+
+/* RIGHT FORM */
+.right {
+    width: 65%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #f8fafc;
+}
+
+.form-box {
+    background: white;
+    padding: 30px;
+    width: 350px;
+    border-radius: 10px;
+}
+
+.form-box h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 12px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    background: #5b6cff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #4a58e0;
+}
+</style>
+</head>
+
+<body>
+
+<div class="left">
+    <h2>CloudClear LISS-IV</h2>
+    <p>AI Powered Accuracy</p>
+    <p>Cloud Removal</p>
+    <p>Secure Processing</p>
+    <p>Lightning Fast</p>
+</div>
+
+<div class="right">
+    <div class="form-box">
+        <h2>Create Account</h2>
+
+        <input type="email" id="email" placeholder="Email Address">
+        <input type="password" id="password" placeholder="Password">
+
+        <button onclick="signup()">Sign Up</button>
+
+        <p style="text-align:center;margin-top:10px;">
+            Already have account? <a href="login.html">Sign In</a>
+        </p>
+    </div>
+</div>
+
+<!-- Firebase -->
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+
+<script>
+const firebaseConfig = {
+  apiKey: "AIzaSyArT_R7oz9AeD6Rkd9cj-BHkR9vff9vCi4",
+  authDomain: "cloudclear-web.firebaseapp.com"
+};
+
+firebase.initializeApp(firebaseConfig);
+const auth = firebase.auth();
+
+function signup() {
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+
+    auth.createUserWithEmailAndPassword(email, password)
+    .then(() => {
+        alert("Account Created ✅");
+        window.location.href = "dashboard.html";
+    })
+    .catch(err => alert(err.message));
+}
+</script>
+
+</body>
+</html>

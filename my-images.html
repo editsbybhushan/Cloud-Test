@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>My Images</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Segoe UI;}
+
+body{
+  display:flex;
+  background:#f1f5f9;
+}
+
+/* SIDEBAR */
+.sidebar{
+  width:240px;
+  background:#0b1220;
+  color:white;
+  height:100vh;
+  padding:20px;
+}
+
+.sidebar h2{margin-bottom:30px;}
+
+.sidebar a{
+  display:block;
+  padding:12px;
+  color:#cbd5e1;
+  text-decoration:none;
+  border-radius:8px;
+  margin-bottom:10px;
+}
+
+.sidebar a.active{
+  background:#5b6cff;
+  color:white;
+}
+
+/* MAIN */
+.main{
+  flex:1;
+  padding:20px;
+}
+
+/* HEADER */
+.header{
+  display:flex;
+  justify-content:space-between;
+  margin-bottom:20px;
+}
+
+/* GRID */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:20px;
+}
+
+/* CARD */
+.card{
+  background:white;
+  border-radius:10px;
+  overflow:hidden;
+}
+
+.card img{
+  width:100%;
+  height:180px;
+  object-fit:cover;
+}
+
+.card-content{
+  padding:10px;
+}
+
+.status{
+  font-size:12px;
+  margin-top:5px;
+}
+
+.done{color:green;}
+.processing{color:orange;}
+</style>
+</head>
+
+<body>
+
+<!-- SIDEBAR -->
+<div class="sidebar">
+  <h2>CloudClear</h2>
+
+  <a href="#">Dashboard</a>
+  <a href="upload.html">Upload Image</a>
+  <a href="my-images.html">My Images</a>
+  <a href="history.html">History</a>
+  <a href="compare.html">Compare</a>
+  <a href="tools.html">Tools</a>
+  <a href="settings.html">Settings</a>
+  <a href="index.html">Logout</a>
+</div>
+
+<!-- MAIN -->
+<div class="main">
+
+  <!-- HEADER -->
+  <div class="header">
+    <h2>My Images</h2>
+    <div>User</div>
+  </div>
+
+  <!-- GRID -->
+  <div class="grid" id="imageGrid"></div>
+
+</div>
+
+<script>
+// LOAD IMAGES FROM LOCAL STORAGE
+let grid = document.getElementById("imageGrid");
+
+// dummy fallback images (jab real upload na ho)
+let images = JSON.parse(localStorage.getItem("images")) || [
+  {src:"https://via.placeholder.com/300", name:"Image 1", status:"Done"},
+  {src:"https://via.placeholder.com/300", name:"Image 2", status:"Processing"}
+];
+
+images.forEach(img=>{
+  let div = document.createElement("div");
+  div.className="card";
+
+  div.innerHTML = `
+    <img src="${img.src}">
+    <div class="card-content">
+      <b>${img.name}</b>
+      <div class="status ${img.status.toLowerCase()}">${img.status}</div>
+    </div>
+  `;
+
+  grid.appendChild(div);
+});
+</script>
+
+</body>
+</html>

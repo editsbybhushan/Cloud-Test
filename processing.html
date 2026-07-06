@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Processing - CloudClear</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    display: flex;
+    background: #f1f5f9;
+}
+
+/* SIDEBAR */
+.sidebar {
+    width: 230px;
+    height: 100vh;
+    background: #0b1220;
+    color: white;
+    padding: 20px;
+    position: fixed;
+}
+
+.sidebar h2 {
+    margin-bottom: 30px;
+}
+
+.sidebar a {
+    display: block;
+    color: #cbd5e1;
+    text-decoration: none;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.sidebar a:hover {
+    background: #1e293b;
+    color: white;
+}
+
+/* MAIN */
+.main {
+    margin-left: 230px;
+    width: calc(100% - 230px);
+}
+
+/* TOPBAR */
+.topbar {
+    background: white;
+    padding: 15px 25px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+/* CONTENT */
+.content {
+    padding: 40px;
+    text-align: center;
+}
+
+/* PROCESS BOX */
+.process-box {
+    background: white;
+    padding: 40px;
+    border-radius: 12px;
+    display: inline-block;
+    box-shadow: 0 0 15px rgba(0,0,0,0.05);
+}
+
+/* LOADER */
+.loader {
+    margin: 20px auto;
+    border: 6px solid #eee;
+    border-top: 6px solid #5b6cff;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    100% { transform: rotate(360deg); }
+}
+
+/* STATUS TEXT */
+.status {
+    margin-top: 15px;
+    color: #555;
+}
+
+/* PROGRESS BAR */
+.progress-bar {
+    width: 100%;
+    background: #eee;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+.progress {
+    height: 10px;
+    width: 0%;
+    background: #5b6cff;
+    border-radius: 10px;
+    transition: 0.3s;
+}
+</style>
+</head>
+
+<body>
+
+<!-- SIDEBAR -->
+<div class="sidebar">
+    <h2>CloudClear</h2>
+  <a href="#">Dashboard</a>
+  <a href="upload.html">Upload Image</a>
+  <a href="my-images.html">My Images</a>
+  <a href="history.html">History</a>
+  <a href="compare.html">Compare</a>
+  <a href="tools.html">Tools</a>
+  <a href="settings.html">Settings</a>
+  <a href="index.html">Logout</a>
+</div>
+
+<!-- MAIN -->
+<div class="main">
+
+    <!-- TOPBAR -->
+    <div class="topbar">
+        <h3>Processing Image</h3>
+    </div>
+
+    <!-- CONTENT -->
+    <div class="content">
+
+        <div class="process-box">
+            <h2>AI is Processing Your Image...</h2>
+
+            <div class="loader"></div>
+
+            <p class="status" id="statusText">
+                Uploading image...
+            </p>
+
+            <div class="progress-bar">
+                <div class="progress" id="progress"></div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+let progress = document.getElementById("progress");
+let statusText = document.getElementById("statusText");
+
+let width = 0;
+
+let steps = [
+    "Uploading image...",
+    "Analyzing cloud regions...",
+    "Removing clouds...",
+    "Reconstructing image...",
+    "Finalizing output..."
+];
+
+let stepIndex = 0;
+
+let interval = setInterval(() => {
+    if (width >= 100) {
+        clearInterval(interval);
+        statusText.innerText = "Completed! Redirecting...";
+        
+        setTimeout(() => {
+            window.location.href = "result.html";
+        }, 1500);
+
+    } else {
+        width += 5;
+        progress.style.width = width + "%";
+
+        if (width % 20 === 0 && stepIndex < steps.length) {
+            statusText.innerText = steps[stepIndex];
+            stepIndex++;
+        }
+    }
+}, 300);
+</script>
+
+</body>
+</html>

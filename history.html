@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>History - CloudClear</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    display: flex;
+    background: #f1f5f9;
+}
+
+/* SIDEBAR */
+.sidebar {
+    width: 230px;
+    height: 100vh;
+    background: #0b1220;
+    color: white;
+    padding: 20px;
+    position: fixed;
+}
+
+.sidebar h2 {
+    margin-bottom: 30px;
+}
+
+.sidebar a {
+    display: block;
+    color: #cbd5e1;
+    text-decoration: none;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.sidebar a:hover {
+    background: #1e293b;
+    color: white;
+}
+
+/* MAIN */
+.main {
+    margin-left: 230px;
+    width: calc(100% - 230px);
+}
+
+/* TOPBAR */
+.topbar {
+    background: white;
+    padding: 15px 25px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+/* CONTENT */
+.content {
+    padding: 30px;
+}
+
+/* TABLE */
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(0,0,0,0.05);
+}
+
+.table th, .table td {
+    padding: 15px;
+    text-align: left;
+}
+
+.table th {
+    background: #e2e8f0;
+}
+
+.table tr {
+    border-bottom: 1px solid #eee;
+}
+
+.table tr:hover {
+    background: #f9fafb;
+}
+
+/* STATUS */
+.status {
+    padding: 5px 10px;
+    border-radius: 5px;
+    color: white;
+    font-size: 12px;
+}
+
+.success {
+    background: #22c55e;
+}
+
+.processing {
+    background: #f59e0b;
+}
+
+/* IMAGE */
+.thumb {
+    width: 80px;
+    border-radius: 5px;
+}
+
+/* BUTTON */
+.btn {
+    padding: 6px 10px;
+    border: none;
+    background: #5b6cff;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background: #4a58e0;
+}
+</style>
+</head>
+
+<body>
+
+<!-- SIDEBAR -->
+<div class="sidebar">
+    <h2>CloudClear</h2>
+  <a href="#">Dashboard</a>
+  <a href="upload.html">Upload Image</a>
+  <a href="my-images.html">My Images</a>
+  <a href="history.html">History</a>
+  <a href="compare.html">Compare</a>
+  <a href="tools.html">Tools</a>
+  <a href="settings.html">Settings</a>
+  <a href="index.html">Logout</a>
+</div>
+
+<!-- MAIN -->
+<div class="main">
+
+    <!-- TOPBAR -->
+    <div class="topbar">
+        <h3>Processing History</h3>
+    </div>
+
+    <!-- CONTENT -->
+    <div class="content">
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Image</th>
+                    <th>Date</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr>
+                    <td><img src="https://via.placeholder.com/80" class="thumb"></td>
+                    <td>01 Aug 2026</td>
+                    <td><span class="status success">Completed</span></td>
+                    <td><button class="btn">View</button></td>
+                </tr>
+
+                <tr>
+                    <td><img src="https://via.placeholder.com/80" class="thumb"></td>
+                    <td>30 Jul 2026</td>
+                    <td><span class="status success">Completed</span></td>
+                    <td><button class="btn">View</button></td>
+                </tr>
+
+                <tr>
+                    <td><img src="https://via.placeholder.com/80" class="thumb"></td>
+                    <td>29 Jul 2026</td>
+                    <td><span class="status processing">Processing</span></td>
+                    <td><button class="btn">View</button></td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+
+</div>
+
+</body>
+</html>

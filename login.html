@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial;
+    display: flex;
+    height: 100vh;
+}
+
+/* LEFT PANEL */
+.left {
+    width: 35%;
+    background: linear-gradient(#0b1220, #1e293b);
+    color: white;
+    padding: 40px;
+}
+
+.left h2 {
+    margin-bottom: 20px;
+}
+
+/* RIGHT FORM */
+.right {
+    width: 65%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #f8fafc;
+}
+
+.form-box {
+    background: white;
+    padding: 30px;
+    width: 350px;
+    border-radius: 10px;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 12px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    background: #5b6cff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+.google {
+    background: #db4437;
+}
+</style>
+</head>
+
+<body>
+
+<div class="left">
+    <h2>CloudClear LISS-IV</h2>
+    <p>AI Powered Accuracy</p>
+    <p>Cloud Removal</p>
+    <p>Secure Processing</p>
+</div>
+
+<div class="right">
+    <div class="form-box">
+        <h2>Welcome Back</h2>
+
+        <input type="email" id="email" placeholder="Email Address">
+        <input type="password" id="password" placeholder="Password">
+
+        <button onclick="login()">Sign In</button>
+        <button class="google" onclick="googleLogin()">Login with Google</button>
+
+        <p style="text-align:center;">
+            Don't have account? <a href="signup.html">Sign Up</a>
+        </p>
+    </div>
+</div>
+
+<!-- Firebase -->
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+
+<script>
+const firebaseConfig = {
+  apiKey: "AIzaSyArT_R7oz9AeD6Rkd9cj-BHkR9vff9vCi4",
+  authDomain: "cloudclear-web.firebaseapp.com"
+};
+
+firebase.initializeApp(firebaseConfig);
+const auth = firebase.auth();
+
+function login() {
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+
+    auth.signInWithEmailAndPassword(email, password)
+    .then(() => {
+        alert("Login Successful ✅");
+        window.location.href = "dashboard.html";
+    })
+    .catch(err => alert(err.message));
+}
+
+function googleLogin() {
+    const provider = new firebase.auth.GoogleAuthProvider();
+
+    auth.signInWithPopup(provider)
+    .then(() => {
+        alert("Google Login Successful ✅");
+        window.location.href = "dashboard.html";
+    })
+    .catch(err => alert(err.message));
+}
+</script>
+
+</body>
+</html>

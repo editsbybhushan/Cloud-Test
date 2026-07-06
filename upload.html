@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Upload Image</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Segoe UI;}
+
+body{
+  display:flex;
+  background:#f1f5f9;
+}
+
+/* SIDEBAR */
+.sidebar{
+  width:240px;
+  background:#0b1220;
+  color:white;
+  height:100vh;
+  padding:20px;
+}
+
+.sidebar h2{margin-bottom:30px;}
+
+.sidebar a{
+  display:block;
+  padding:12px;
+  color:#cbd5e1;
+  text-decoration:none;
+  border-radius:8px;
+  margin-bottom:10px;
+}
+
+.sidebar a.active{
+  background:#5b6cff;
+  color:white;
+}
+
+/* MAIN */
+.main{
+  flex:1;
+  padding:20px;
+}
+
+/* HEADER */
+.header{
+  display:flex;
+  justify-content:space-between;
+  margin-bottom:20px;
+}
+
+/* GRID */
+.grid{
+  display:grid;
+  grid-template-columns:2fr 1fr;
+  gap:20px;
+}
+
+/* UPLOAD BOX */
+.upload-box{
+  background:white;
+  border:2px dashed #5b6cff;
+  padding:50px;
+  text-align:center;
+  border-radius:12px;
+}
+
+.upload-box button{
+  margin-top:15px;
+  padding:10px 20px;
+  background:#5b6cff;
+  color:white;
+  border:none;
+  border-radius:6px;
+  cursor:pointer;
+}
+
+/* CARD */
+.card{
+  background:white;
+  padding:20px;
+  border-radius:10px;
+}
+
+/* SAMPLE IMAGES */
+.samples{
+  display:flex;
+  gap:10px;
+  margin-top:10px;
+}
+
+.samples img{
+  width:120px;
+  height:90px;
+  border-radius:8px;
+  object-fit:cover;
+}
+
+/* RECENT */
+.recent-item{
+  display:flex;
+  justify-content:space-between;
+  margin-top:10px;
+  font-size:14px;
+}
+
+/* TIPS */
+.tips{
+  margin-top:20px;
+  background:white;
+  padding:20px;
+  border-radius:10px;
+  display:flex;
+  justify-content:space-between;
+}
+</style>
+</head>
+
+<body>
+
+<!-- SIDEBAR -->
+<div class="sidebar">
+  <h2>CloudClear</h2>
+
+  <a href="#">Dashboard</a>
+  <a href="upload.html" class="active">Upload Image</a>
+  <a href="my-images.html">My Images</a>
+  <a href="history.html">History</a>
+  <a href="compare.html">Compare</a>
+  <a href="tools.html">Tools</a>
+  <a href="settings.html">Settings</a>
+  <a href="index.html">Logout</a>
+</div>
+
+<!-- MAIN -->
+<div class="main">
+
+  <div class="header">
+    <h2>Upload LISS-IV Image</h2>
+    <div>User</div>
+  </div>
+
+  <div class="grid">
+
+    <!-- LEFT -->
+    <div>
+
+      <div class="upload-box">
+        <h3>Drag & Drop your image here</h3>
+        <p>or</p>
+
+        <input type="file" id="file" hidden>
+
+        <button onclick="startUpload()">Browse Files</button>
+
+        <p style="margin-top:10px;font-size:12px;color:gray;">
+          Supported formats: .tif, .png, .jpg | Max size: 200MB
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>Sample Images</h3>
+        <div class="samples">
+          <img src="https://via.placeholder.com/150">
+          <img src="https://via.placeholder.com/150">
+          <img src="https://via.placeholder.com/150">
+          <img src="https://via.placeholder.com/150">
+        </div>
+      </div>
+
+    </div>
+
+    <!-- RIGHT -->
+    <div>
+
+      <div class="card">
+        <h3>Upload Guidelines</h3>
+        <ul>
+          <li>Upload only LISS-IV images</li>
+          <li>Recommended: GeoTIFF</li>
+          <li>Max size: 200MB</li>
+          <li>Use low cloud images</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3>Recent Uploads</h3>
+
+        <div class="recent-item">
+          <span>Image_1.tif</span>
+          <span style="color:green;">Done</span>
+        </div>
+
+        <div class="recent-item">
+          <span>Image_2.tif</span>
+          <span style="color:orange;">Processing</span>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="tips">
+    <div>High Quality Images</div>
+    <div>Low Cloud Cover</div>
+    <div>Correct Metadata</div>
+    <div>Good Lighting</div>
+  </div>
+
+</div>
+
+<!-- ✅ FIXED SCRIPT -->
+<script>
+
+function startUpload(){
+  document.getElementById("file").click();
+}
+
+document.getElementById("file").addEventListener("change", async function(){
+
+  let file = this.files[0];
+
+  if(!file){
+    alert("Select file");
+    return;
+  }
+
+  let formData = new FormData();
+  formData.append("image", file);
+
+  try{
+
+    let res = await fetch("http://127.0.0.1:5000/process", {
+      method: "POST",
+      body: formData
+    });
+
+    if(!res.ok){
+      throw new Error("Upload failed");
+    }
+
+    let blob = await res.blob();
+
+    let reader = new FileReader();
+    reader.onload = function(){
+
+      localStorage.setItem("resultImage", reader.result);
+
+      // 👉 upload ke baad redirect
+      window.location.href = "result.html";
+    };
+
+    reader.readAsDataURL(blob);
+
+  }catch(err){
+    alert("Error: " + err);
+  }
+
+});
+
+</script>
+
+</body>
+</html>

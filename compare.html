@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Compare Images - CloudClear</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    display: flex;
+    background: #f1f5f9;
+}
+
+/* SIDEBAR */
+.sidebar {
+    width: 230px;
+    height: 100vh;
+    background: #0b1220;
+    color: white;
+    padding: 20px;
+    position: fixed;
+}
+
+.sidebar h2 {
+    margin-bottom: 30px;
+}
+
+.sidebar a {
+    display: block;
+    color: #cbd5e1;
+    text-decoration: none;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.sidebar a:hover {
+    background: #1e293b;
+    color: white;
+}
+
+/* MAIN */
+.main {
+    margin-left: 230px;
+    width: calc(100% - 230px);
+}
+
+/* TOPBAR */
+.topbar {
+    background: white;
+    padding: 15px 25px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+/* CONTENT */
+.content {
+    padding: 30px;
+    text-align: center;
+}
+
+/* COMPARE BOX */
+.compare-container {
+    position: relative;
+    width: 600px;
+    max-width: 100%;
+    margin: auto;
+}
+
+.compare-container img {
+    width: 100%;
+    display: block;
+    border-radius: 10px;
+}
+
+/* OVERLAY IMAGE */
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    width: 50%;
+}
+
+.slider {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 4px;
+    background: #5b6cff;
+    cursor: ew-resize;
+}
+
+/* LABELS */
+.labels {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.labels span {
+    font-weight: bold;
+}
+</style>
+</head>
+
+<body>
+
+<!-- SIDEBAR -->
+<div class="sidebar">
+    <h2>CloudClear</h2>
+    <a href="dashboard.html">Dashboard</a>
+    <a href="upload.html">Upload Image</a>
+    <a href="processing.html">Processing</a>
+    <a href="result.html">Results</a>
+    <a href="#">Compare</a>
+    <a href="#">History</a>
+    <a href="#">Tools</a>
+    <a href="#">Settings</a>
+    <a href="index.html">Logout</a>
+</div>
+
+<!-- MAIN -->
+<div class="main">
+
+    <!-- TOPBAR -->
+    <div class="topbar">
+        <h3>Compare Images</h3>
+    </div>
+
+    <!-- CONTENT -->
+    <div class="content">
+
+        <div class="compare-container" id="compareBox">
+            <img src="https://via.placeholder.com/600x400?text=Original+Image">
+
+            <div class="overlay" id="overlay">
+                <img src="https://via.placeholder.com/600x400?text=Processed+Image">
+            </div>
+
+            <div class="slider" id="slider"></div>
+        </div>
+
+        <div class="labels">
+            <span>Original</span>
+            <span>Processed</span>
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+const slider = document.getElementById("slider");
+const overlay = document.getElementById("overlay");
+const container = document.getElementById("compareBox");
+
+let isDragging = false;
+
+slider.addEventListener("mousedown", () => isDragging = true);
+window.addEventListener("mouseup", () => isDragging = false);
+
+window.addEventListener("mousemove", (e) => {
+    if (!isDragging) return;
+
+    let rect = container.getBoundingClientRect();
+    let x = e.clientX - rect.left;
+
+    if (x < 0) x = 0;
+    if (x > rect.width) x = rect.width;
+
+    overlay.style.width = x + "px";
+    slider.style.left = x + "px";
+});
+</script>
+
+</body>
+</html>
